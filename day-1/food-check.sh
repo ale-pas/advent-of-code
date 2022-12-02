@@ -1,8 +1,8 @@
 #!/bin/bash
 
-file="elf-food.txt"
-rm "elf_list.txt"
-array=( $(cat $file| sed -e 's/^$/-/') )
+input="elf-food.txt"
+list="elf_list.txt"
+array=( $(cat $input| sed -e 's/^$/-/') )
 count=0
 sum=0
 elfs=()
@@ -28,10 +28,10 @@ done
 for i in "${elfs[@]}"
 do
 	# echo $i
-	echo $i >> "elf_list.txt"
+	echo $i >> $list
 done
-sorted=($(sort -nr "elf_list.txt"))
+sorted=($(sort -nr $list))
 let total=${sorted[0]}+${sorted[1]}+${sorted[2]}
 echo "Total calories of the first elf: $kal"
 echo "Total calories of the first 3 elves: $total"
-rm "elf_list.txt"
+rm $list
