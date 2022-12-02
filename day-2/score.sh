@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rounds="rounds.txt"
+rounds="input.txt"
 opponent=($(cat $rounds |awk '{print $1}'))
 player=($(cat $rounds |awk '{print $2}'))
 
@@ -22,3 +22,15 @@ result["C X"]="6"
 result["C Y"]="0"
 result["C Z"]="3"
 
+score=0
+len=${#player[@]}
+for (( i=1; i<=${len}; i++ ))
+do
+	echo "${opponent[$i]} ${player[$i]}: ${points["${player[$i]}"]} + ${result["${opponent[$i]} ${player[$i]}"]}"
+	score=$((score+${points["${player[$i]}"]}+${result["${opponent[$i]} ${player[$i]}"]}))
+	echo "score: $score"
+
+done
+
+
+echo "Final score: $score"
